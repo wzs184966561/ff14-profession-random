@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>职业随机</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.min.js"></script>
+    <style>
+        #app{
+            margin:48px auto;
+            text-align: center;
+        }
+        div{
+            margin:12px 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div>职业随机</div>
+        <div>输入名字<input type="text" v-model="input1"> <button @click="randomCareer">开始随机</button></div>
+        <div v-if="career1">{{input1}}的职能是:{{type1[career1]}}  <button @click="randomCareer2">随机职业</button></div>
+        <div v-if="career2">{{input1}}的职业是:{{type2[career1][career2]}} <button @click="restart">重置</button></div>
+      </div>
+<script>
+// 创建一个Vue实例
+new Vue({
+    el: '#app',
+    data: {
+        input1: '',
+        type1:['坦克','奶妈','近战','远敏','法系'],
+        type2:[['战士','骑士','绝枪','黑骑'],['白魔','贤者','占星','学者'],['龙骑','蝰蛇','武士','武僧','忍者','镰刀'],['诗人','机工','舞者'],['黑批','傻逼召唤','赤魔','色魔法师']],
+        career2:'',
+        career1:'',
+    },
+    methods:{
+        randomCareer(){
+            this.career1 = Math.floor(Math.random()*5);
+            console.log(this.career1)
+        },
+        randomCareer2(){
+           
+            this.career2 =  Math.floor(Math.random()*this.type2[this.career1].length)
+            console.log(this.career2)
+        },
+        restart(){
+            this.career1 = ''
+            this.career2 = ''
+        }
+    }
+});
+</script>
+</body>
+</html>
